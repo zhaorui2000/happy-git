@@ -3,7 +3,6 @@
  * @LastEditors: Rui Zhao
  */
 import path from "path";
-import consola from "consola";
 const getConfig = async (name = "base.config.js") => {
   let result = {};
   try {
@@ -11,7 +10,7 @@ const getConfig = async (name = "base.config.js") => {
       `${path.resolve(process.cwd(), "config", name)}`
     )).default;
   } catch (e) {
-    consola.error(e.message);
+    chalk.bold.red(e.message);
   }
   return result;
 };

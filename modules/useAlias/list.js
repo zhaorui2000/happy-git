@@ -34,8 +34,18 @@ export default [
     cmd: `checkout -b`,
   },
   {
+    message: "checkout 命令",
+    alias: "ck",
+    cmd: `diff --cached`,
+  },
+  {
     message: "暂存区文件变动",
     alias: "dc",
     cmd: `diff --cached`,
+  },
+  {
+    message: "branch 命令",
+    alias: "b",
+    cmd: `branch`,
   },
 ];

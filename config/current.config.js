@@ -1,7 +1,4 @@
-/*
- * @Author: Rui Zhao
- * @LastEditors: Rui Zhao
- */
+#!/usr/bin/env zx
 import config from "./base.config.js";
 import mergeConfig from "../utils/base/mergeConfig.js";
 export default mergeConfig(config, {
