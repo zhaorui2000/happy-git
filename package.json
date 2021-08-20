@@ -1,0 +1,16 @@
+{
+  "name": "happy-git",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "consola": "^2.15.3",
+    "inquirer": "^8.1.2",
+    "lodash-es": "^4.17.21",
+    "minimist": "^1.2.5"
+  }
+}
