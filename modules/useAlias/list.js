@@ -34,9 +34,14 @@ export default [
     cmd: `checkout -b`,
   },
   {
+    message: "远程分支创建本地分支",
+    alias: "cot",
+    cmd: `checkout --track`,
+  },
+  {
     message: "checkout 命令",
     alias: "ck",
-    cmd: `diff --cached`,
+    cmd: `checkout`,
   },
   {
     message: "暂存区文件变动",
@@ -47,5 +52,15 @@ export default [
     message: "branch 命令",
     alias: "b",
     cmd: `branch`,
+  },
+  {
+    message: "fetch 命令",
+    alias: "f",
+    cmd: `fetch`,
+  },
+  {
+    message: "diff",
+    alias: "d",
+    cmd: `diff`,
   },
 ];
