@@ -19,8 +19,7 @@ const runAsync = async (...ps) => {
           if (isObject(cur)) {
             return $([`${get(cur, "cmd", "")}\n`])
               .then((value) => {
-                get(cur, "callBack", () => {})(value);
-                res();
+                get(cur, "callBack", () => {})(value, res, rej);
               })
               .catch((e) => {
                 get(cur, "handleError", rej)(e, res);

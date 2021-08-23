@@ -3,7 +3,7 @@
  * @LastEditors: Rui Zhao
  */
 import runAsync from "./base/runAsync.js";
-const getAllRemoteBranch = async ({ remoteName = "origin" }) => {
+const getAllRemoteBranch = async ({ remoteName = "origin" } = {}) => {
   let remoteBranch = [];
   await runAsync(`git fetch ${remoteName} -p`, {
     cmd: `git branch -r`,

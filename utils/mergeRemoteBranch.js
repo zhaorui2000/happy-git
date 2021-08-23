@@ -3,7 +3,10 @@
  * @LastEditors: Rui Zhao
  */
 import runAsync from "./base/runAsync.js";
-const mergeRemoteBranch = ({ branchList = [[]], remoteName = "origin" }) => {
+const mergeRemoteBranch = ({
+  branchList = [[]],
+  remoteName = "origin",
+} = {}) => {
   let arr = [...new Set(branchList.flat(Infinity))];
   return arr.flat(Infinity).reduce(
     (result, branch) => {
