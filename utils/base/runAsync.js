@@ -20,13 +20,15 @@ const runAsync = async (...ps) => {
             if (isObject(item)) {
               return $([`${get(item, "cmd", "")}\n`])
                 .then((value) => {
-                  get(item, "callBack", () => {})(value, res, rej);
+                  get(item, "callBack", res)(value, res, rej);
                 })
                 .catch((e) => {
                   get(item, "handleError", rej)(e, res);
                 });
             }
-            console.log(chalk.bold.red("不支持 'Object' 'String' 以外的参数类型"));
+            console.log(
+              chalk.bold.red("不支持 'Object' 'String' 以外的参数类型")
+            );
           };
           if (isFunction(cur)) {
             return helper(cur(await pre));
