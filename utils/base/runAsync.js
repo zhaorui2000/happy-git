@@ -2,7 +2,7 @@
  * @Author: Rui Zhao
  * @LastEditors: Rui Zhao
  */
-import { get, isFunction, isObject, isString } from "lodash-es";
+import { get, isFunction, isObject, isString, isUndefined } from "lodash-es";
 
 // 主运行方法
 const runAsync = async (...ps) => {
@@ -10,8 +10,11 @@ const runAsync = async (...ps) => {
     return pre.then(
       () =>
         new Promise(async (res, rej) => {
-          console.log(`\n ${"".padEnd(80, "⭐️")} \n`);
           const helper = (item) => {
+            if (isUndefined(item) || item === "") {
+              return new Promise((resolve) => resolve()).then(res).catch(rej);
+            }
+            console.log(`\n ${"".padEnd(80, "⭐️")} \n`);
             if (isString(item)) {
               return $([`${item}\n`])
                 .then(res)
