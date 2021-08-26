@@ -34,7 +34,7 @@ const runAsync = async (...ps) => {
             );
           };
           if (isFunction(cur)) {
-            return helper(cur(await pre));
+            return helper(await cur(await pre));
           } else {
             return helper(cur);
           }
