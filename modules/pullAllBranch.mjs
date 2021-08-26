@@ -5,30 +5,30 @@
 
 import runAsync from "../utils/base/runAsync.js";
 import getAllRemoteBranch from "../utils/getAllRemoteBranch.js";
+import getCurrentBranch from "../utils/getCurrentBranch.js";
+import switchBranch from "../utils/switchBranch.js";
+import stashUnstage from "../utils/stashUnstage.js";
 const pullAllBranch = async () => {
   const { config } = process.params;
   const {
     remote: { name: remoteName },
   } = config;
   cd(config.directory);
-  let remoteBranch = await getAllRemoteBranch({ remoteName });
-  runAsync(
-    ...remoteBranch.reduce((result, item) => {
-      result[result.length] = {
-        cmd: `git switch ${item}`,
-        handleError: ({ stderr }, res) => {
-          // 本地分支不存在
-          if (/fatal: invalid reference: \S+/.test(stderr)) {
-            runAsync(
-              `git checkout -t ${remoteName}/${item}`,
-              `git switch ${item}`
-            ).then(res);
-          }
-        },
-      };
-      result[result.length] = `git merge ${remoteName}/${item}`;
-      return result;
-    }, [])
+  const remoteBranch = await getAllRemoteBranch({ remoteName });
+  const currentBranch = await getCurrentBranch();
+  await runAsync(
+    ...await stashUnstage(
+      ...remoteBranch.reduce((result, item) => {
+        result[result.length] = async () => {
+          await switchBranch(item, { autoCreate: true });
+        };
+        result[result.length] = `git merge ${remoteName}/${item}`;
+        return result;
+      }, []),
+      async () => {
+        await switchBranch(currentBranch, { autoCreate: false });
+      }
+    )
   );
 };
 export default pullAllBranch;

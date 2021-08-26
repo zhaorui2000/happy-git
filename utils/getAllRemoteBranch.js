@@ -7,11 +7,12 @@ const getAllRemoteBranch = async ({ remoteName = "origin" } = {}) => {
   let remoteBranch = [];
   await runAsync(`git fetch ${remoteName} -p`, {
     cmd: `git branch -r`,
-    callBack: ({ stdout: result }) => {
+    callBack: ({ stdout: result }, res) => {
       remoteBranch = result
         .replace(/( )|(\S+(?=\/)\/HEAD \-> )|(\S+(?=\/))\/|()/g, "")
         .split("\n")
         .slice(0, -1);
+      res();
     },
   });
   return remoteBranch;
