@@ -11,7 +11,7 @@ const main = async () => {
   const choices = [
     { name: "拉取->合并->提交", value: mergeAndPush },
     { name: "设置别名", value: useAlias },
-    { name: "拉取全部远程分支(beta)", value: pullAllBranch },
+    { name: "拉取全部远程分支", value: pullAllBranch },
   ];
   const { command } = await inquirer.prompt([
     {

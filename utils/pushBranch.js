@@ -19,7 +19,7 @@ const pushBranch = ({ branchList = [[]], remoteName = "origin" } = {}) => {
             `git checkout ${branch}`,
             `git merge ${preBranch}`,
             `git push ${remoteName} ${branch}`,
-            `git log --max-count=10 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit`
+            `git log -5 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit`
           );
           preBranch = branch;
         }
